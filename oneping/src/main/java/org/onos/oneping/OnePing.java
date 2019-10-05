@@ -171,10 +171,10 @@ public class OnePing {
     private class PingPacketProcessor implements PacketProcessor {
         @Override
         public void process(PacketContext context) {
-            Ethernet eth = context.inPacket().parsed();
-            if (isIcmpPing(eth)) {
-                processPing(context, eth);
-            }
+        //    Ethernet eth = context.inPacket().parsed();
+        //    if (isIcmpPing(eth)) {
+        //        processPing(context, eth);
+        //    }
         }
     }
 
