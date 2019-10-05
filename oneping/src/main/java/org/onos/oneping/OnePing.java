@@ -127,19 +127,21 @@ public class OnePing {
         MacAddress src = eth.getSourceMAC();
         MacAddress dst = eth.getDestinationMAC();
         PingRecord ping = new PingRecord(src, dst);
-        boolean pinged = pings.get(deviceId).contains(ping);
+        //boolean pinged = pings.get(deviceId).contains(ping);
 
-        if (pinged) {
-            // Two pings detected; ban further pings and block packet-out
-            log.warn(MSG_PINGED_TWICE, src, dst, deviceId);
-            banPings(deviceId, src, dst);
-            context.block();
-        } else {
+        banPings(deviceId, src, dst);
+
+        //if (pinged) {
+        //    // Two pings detected; ban further pings and block packet-out
+        //    log.warn(MSG_PINGED_TWICE, src, dst, deviceId);
+        //    banPings(deviceId, src, dst);
+        //    context.block();
+        //} else {
             // One ping detected; track it for the next minute
-            log.info(MSG_PINGED_ONCE, src, dst, deviceId);
-            pings.put(deviceId, ping);
-            timer.schedule(new PingPruner(deviceId, ping), TIMEOUT_SEC * 1000);
-        }
+        //    log.info(MSG_PINGED_ONCE, src, dst, deviceId);
+        //    pings.put(deviceId, ping);
+        //    timer.schedule(new PingPruner(deviceId, ping), TIMEOUT_SEC * 1000);
+        //}
     }
 
     // Installs a temporary drop rule for the ICMP pings between given srd/dst.
