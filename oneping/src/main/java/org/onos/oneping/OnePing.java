@@ -130,6 +130,7 @@ public class OnePing {
         //boolean pinged = pings.get(deviceId).contains(ping);
 
         banPings(deviceId, src, dst);
+        context.block();
 
         //if (pinged) {
         //    // Two pings detected; ban further pings and block packet-out
